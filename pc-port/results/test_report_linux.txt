@@ -1,0 +1,33 @@
+pcport_tests (POSIX build)
+sim rate 120 Hz, dt=0.008333 s, audio 48000 Hz
+
+T0 SHA-256 known-answer vectors (inventory tool)
+  [PASS] sha256("")
+  [PASS] sha256("abc")
+  [PASS] sha256(1e6 x 'a')
+
+T1 Virtual clock, single-thread fixed-step loop, 60 s of sim, scripted route
+  30 FPS, 4ms+-50% render          tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338 | frames=1771 time=59.03s avg_fps=30.00 low1_fps=30.00 p50_ms=33.333 p99_ms=33.333 max_ms=33.333
+  60 FPS, 4ms+-50% render          tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338 | frames=3571 time=59.52s avg_fps=60.00 low1_fps=60.00 p50_ms=16.667 p99_ms=16.667 max_ms=16.667
+  unlimited, 1.3ms+-80% render     tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338 | frames=46082 time=59.96s avg_fps=768.55 low1_fps=429.43 p50_ms=1.301 p99_ms=2.319 max_ms=2.340
+  60 FPS + 1% 120ms hitches        tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338 | frames=3357 time=59.50s avg_fps=56.42 low1_fps=8.05 p50_ms=16.667 p99_ms=16.667 max_ms=125.941
+  30 FPS, render 45ms (GPU-bound)  tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338 | frames=1309 time=58.68s avg_fps=22.31 low1_fps=20.22 p50_ms=44.709 p99_ms=49.398 max_ms=49.497
+  [PASS] all 5 cases: bit-identical final state (position, distance, timer, anim, audio)
+  [PASS] exactly 7200 ticks = 60.000 s of sim
+  [PASS] limiter holds 30 / 60 FPS on the virtual clock
+  [PASS] unlimited mode is not capped
+  [PASS] over-budget frames are presented immediately (GPU-bound 45 ms -> ~22 FPS)
+  [PASS] route actually moves character and vehicle (>50 m each)
+  [PASS] mission timer 300 s -> 240 s after 60 s of sim
+  [PASS] audio clock = 2,880,000 samples @48 kHz, events stamped in sim time
+
+T2 Control: same physics with variable dt (frame-rate dependent loop)
+  naive loop at 30 FPS: total distance 646.381421 m
+  naive loop at 60 FPS: total distance 652.375793 m
+  difference: -5.994372 m (-0.919%)
+  [PASS] the naive loop DOES drift, so the comparison in T1/T3 is sensitive
+
+T3 Real wall clock, threaded loop (sim thread 120 Hz | render thread limited), 60 s
+  limit 30        wall=60.002s sim/wall=0.99997 late_ticks=2
+      tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338
+      frames=1770 time=59.00s avg_fps=30.00 low1_fps=28.46 p50_ms=33.333 p99_ms=33.712 max_ms=41.962
