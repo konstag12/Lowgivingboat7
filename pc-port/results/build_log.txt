@@ -1,0 +1,78 @@
+=== pc-port build 2026-11-24T07:56:18Z ===
+host: Linux 6.18.44-fc-v819 x86_64
+cmake: cmake version 3.28.3
+native: g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+cross:  x86_64-w64-mingw32-g++-posix (GCC) 13-posix
+$ cmake -S . -B build/linux -G Ninja -DCMAKE_BUILD_TYPE=Release
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/user/Lowgivingboat7/pc-port/build/linux
+$ cmake --build build/linux
+[1/14] Building CXX object CMakeFiles/pcport_core.dir/src/core/frame_limiter.cpp.o
+[2/14] Building CXX object CMakeFiles/pcport_core.dir/src/core/clock.cpp.o
+[3/14] Building CXX object CMakeFiles/pcport_core.dir/src/core/frame_stats.cpp.o
+[4/14] Building CXX object CMakeFiles/pcport_core.dir/src/core/input.cpp.o
+[5/14] Building CXX object CMakeFiles/pcport_core.dir/src/core/sha256.cpp.o
+[6/14] Building CXX object CMakeFiles/pcport_core.dir/src/core/sim.cpp.o
+[7/14] Building CXX object CMakeFiles/pcport_core.dir/src/core/loop.cpp.o
+[8/14] Building CXX object CMakeFiles/pcport_bench.dir/src/app/bench_main.cpp.o
+[9/14] Linking CXX static library libpcport_core.a
+[10/14] Linking CXX executable pcport_bench
+[11/14] Building CXX object CMakeFiles/pcport_tests.dir/tests/test_frame_independence.cpp.o
+[12/14] Linking CXX executable pcport_tests
+[13/14] Building CXX object CMakeFiles/pcport_inventory.dir/src/tools/inventory_main.cpp.o
+[14/14] Linking CXX executable pcport_inventory
+$ cmake -S . -B build/win64 -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=cmake/mingw-w64-x86_64.cmake
+-- The CXX compiler identification is GNU 13.0.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/x86_64-w64-mingw32-g++-posix - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/user/Lowgivingboat7/pc-port/build/win64
+$ cmake --build build/win64
+[1/16] Building CXX object CMakeFiles/pcport_core.dir/src/core/frame_limiter.cpp.obj
+[2/16] Building CXX object CMakeFiles/pcport_core.dir/src/core/sim.cpp.obj
+[3/16] Building CXX object CMakeFiles/pcport_core.dir/src/core/frame_stats.cpp.obj
+[4/16] Building CXX object CMakeFiles/pcport_core.dir/src/core/loop.cpp.obj
+[5/16] Building CXX object CMakeFiles/pcport_core.dir/src/core/input.cpp.obj
+[6/16] Building CXX object CMakeFiles/pcport_core.dir/src/core/sha256.cpp.obj
+[7/16] Building CXX object CMakeFiles/pcport_core.dir/src/core/clock.cpp.obj
+[8/16] Building CXX object CMakeFiles/pcport_bench.dir/src/app/bench_main.cpp.obj
+[9/16] Linking CXX static library libpcport_core.a
+[10/16] Linking CXX executable pcport_bench.exe
+[11/16] Building CXX object CMakeFiles/pcport_tests.dir/tests/test_frame_independence.cpp.obj
+[12/16] Linking CXX executable pcport_tests.exe
+[13/16] Building CXX object CMakeFiles/pcport_inventory.dir/src/tools/inventory_main.cpp.obj
+[14/16] Linking CXX executable pcport_inventory.exe
+[15/16] Building CXX object CMakeFiles/pcport_testscene.dir/src/platform/win32/main_win32.cpp.obj
+[16/16] Linking CXX executable pcport_testscene.exe
+--- outputs ---
+0b1bf18fb57c4d47  803615 bytes  build/win64/pcport_bench.exe  [PE32+ executable (console) x86-64, for MS Windows]
+5861774f4e276b1c  2703139 bytes  build/win64/pcport_inventory.exe  [PE32+ executable (console) x86-64, for MS Windows]
+20cd3c6b1772ed1b  830647 bytes  build/win64/pcport_tests.exe  [PE32+ executable (console) x86-64, for MS Windows]
+72dff011102f2d06  892020 bytes  build/win64/pcport_testscene.exe  [PE32+ executable (console) x86-64, for MS Windows]
+4d5334304fc3d20d  70632 bytes  build/linux/pcport_tests  [ELF 64-bit LSB pie executable, x86-64]
+8c2c820c85cf58a5  54680 bytes  build/linux/pcport_bench  [ELF 64-bit LSB pie executable, x86-64]
+a31d6900ea6fe043  68144 bytes  build/linux/pcport_inventory  [ELF 64-bit LSB pie executable, x86-64]
+--- Windows DLL imports of pcport_testscene.exe ---
+	DLL Name: d3d11.dll
+	DLL Name: KERNEL32.dll
+	DLL Name: msvcrt.dll
+	DLL Name: USER32.dll
+	DLL Name: WINMM.dll
+=== build OK ===

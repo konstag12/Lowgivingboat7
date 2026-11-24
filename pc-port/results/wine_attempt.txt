@@ -1,0 +1,14 @@
+Attempt to execute the Windows x64 build inside the Linux build container (2026-11-24)
+wine: wine-9.0 (Ubuntu 9.0~repack-4build3), kernel 6.18.44-fc-v819 (Firecracker VM)
+
+$ WINEPREFIX=/tmp/.../wineprefix2 wine64 cmd /c echo hi
+wine: created the configuration directory '/tmp/.../wineprefix2'
+free(): invalid pointer
+
+$ wine64 build/win64/pcport_tests.exe --quick
+double free or corruption (out)
+
+Wine itself aborts before running any program (even its own cmd.exe), so the
+Windows binaries could not be executed here. They are verified as PE32+ x86-64
+console images with imports limited to KERNEL32/USER32/WINMM/msvcrt (+d3d11 for
+the test scene). Run them on Windows 11: build\win64\pcport_tests.exe and run.ps1.

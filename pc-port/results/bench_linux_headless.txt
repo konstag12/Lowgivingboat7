@@ -1,0 +1,12 @@
+bench: limit=30 seconds=20.0 loop=threaded render_cost=2.00ms+-50% runs=3
+run 1: frames=570 time=19.00s avg_fps=30.00 low1_fps=29.15 p50_ms=33.333 p99_ms=33.818 max_ms=34.853 sim/wall=0.99992 late_ticks=1 hash=d24514726cd5f60c
+run 2: frames=570 time=19.00s avg_fps=30.00 low1_fps=29.01 p50_ms=33.333 p99_ms=33.889 max_ms=34.964 sim/wall=0.99992 late_ticks=0 hash=d24514726cd5f60c
+run 3: frames=570 time=19.00s avg_fps=30.00 low1_fps=28.70 p50_ms=33.333 p99_ms=34.106 max_ms=35.020 sim/wall=0.99993 late_ticks=0 hash=d24514726cd5f60c
+bench: limit=60 seconds=20.0 loop=threaded render_cost=2.00ms+-50% runs=3
+run 1: frames=1170 time=19.50s avg_fps=60.00 low1_fps=53.00 p50_ms=16.667 p99_ms=17.165 max_ms=27.690 sim/wall=0.99985 late_ticks=0 hash=d24514726cd5f60c
+run 2: frames=1170 time=19.50s avg_fps=60.00 low1_fps=56.66 p50_ms=16.667 p99_ms=16.941 max_ms=18.500 sim/wall=0.99993 late_ticks=0 hash=d24514726cd5f60c
+run 3: frames=1170 time=19.50s avg_fps=60.00 low1_fps=54.78 p50_ms=16.667 p99_ms=16.975 max_ms=20.161 sim/wall=0.99989 late_ticks=0 hash=d24514726cd5f60c
+bench: limit=unlimited seconds=20.0 loop=threaded render_cost=2.00ms+-50% runs=3
+run 1: frames=9974 time=19.94s avg_fps=500.30 low1_fps=320.69 p50_ms=1.994 p99_ms=2.986 max_ms=7.793 sim/wall=0.99992 late_ticks=0 hash=d24514726cd5f60c
+run 2: frames=9936 time=19.94s avg_fps=498.25 low1_fps=328.78 p50_ms=2.003 p99_ms=2.983 max_ms=3.979 sim/wall=0.99986 late_ticks=1 hash=d24514726cd5f60c
+run 3: frames=9964 time=19.94s avg_fps=499.66 low1_fps=328.08 p50_ms=1.998 p99_ms=2.983 max_ms=3.968 sim/wall=0.99983 late_ticks=0 hash=d24514726cd5f60c

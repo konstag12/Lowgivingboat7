@@ -31,3 +31,26 @@ T3 Real wall clock, threaded loop (sim thread 120 Hz | render thread limited), 6
   limit 30        wall=60.002s sim/wall=0.99997 late_ticks=2
       tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338
       frames=1770 time=59.00s avg_fps=30.00 low1_fps=28.46 p50_ms=33.333 p99_ms=33.712 max_ms=41.962
+  limit 60        wall=60.002s sim/wall=0.99997 late_ticks=0
+      tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338
+      frames=3570 time=59.50s avg_fps=60.00 low1_fps=56.61 p50_ms=16.667 p99_ms=16.888 max_ms=20.561
+  limit unlimited wall=60.002s sim/wall=0.99997 late_ticks=0
+      tick=7200 sim=60.000s char_dist=152.457384 m car_dist=502.980979 m pos=(9.4171,86.8161) car=(209.1057,168.8150) timer=240.0000 s footsteps=99 last_step_sample=2878400 checkpoints=26 hash=b218f76bfa627338
+      frames=29865 time=59.94s avg_fps=498.27 low1_fps=311.59 p50_ms=2.005 p99_ms=2.986 max_ms=9.103
+  [PASS] 30 / 60 / unlimited: bit-identical final state
+  [PASS] threaded result == single-thread/virtual reference
+  [PASS] distance 30 FPS = 152.457384 m, 60 FPS = 152.457384 m (char) / 502.980979 = 502.980979 m (car)
+  [PASS] measured render rate ~30 FPS
+  [PASS] measured render rate ~60 FPS
+  [PASS] unlimited mode renders faster than 60 FPS
+  [PASS] simulation runs at real-time speed (sim/wall within 1%) in every mode
+
+T4 Live input recorded at 60 FPS, replayed at 30 FPS and unlimited (10 s)
+  [PASS] replay saved
+  [PASS] replay loaded (1200 ticks)
+  live@60:      tick=1200 sim=10.000s char_dist=19.483249 m car_dist=72.939303 m pos=(-0.4647,11.8381) car=(53.5614,23.2281) timer=290.0000 s footsteps=12 last_step_sample=356000 checkpoints=3 hash=c1979791cdb97258
+  replay@30:    tick=1200 sim=10.000s char_dist=19.483249 m car_dist=72.939303 m pos=(-0.4647,11.8381) car=(53.5614,23.2281) timer=290.0000 s footsteps=12 last_step_sample=356000 checkpoints=3 hash=c1979791cdb97258
+  replay@unl.:  tick=1200 sim=10.000s char_dist=19.483249 m car_dist=72.939303 m pos=(-0.4647,11.8381) car=(53.5614,23.2281) timer=290.0000 s footsteps=12 last_step_sample=356000 checkpoints=3 hash=c1979791cdb97258
+  [PASS] replay reproduces the live session bit-exactly at a different FPS limit
+
+RESULT: ALL PASSED (0 failures)
